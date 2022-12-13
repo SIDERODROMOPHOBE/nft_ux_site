@@ -6,8 +6,6 @@ import React, {useEffect, useState} from 'react';
 
 function Chaininfo() {
 
-
-
     const [add, setAddress] = useState(null);
     const [chain, setChain] = useState(null); 
     const [block, setBlock] = useState(null);
@@ -15,29 +13,42 @@ function Chaininfo() {
 
 
 
-    const url="https://sepolia.infura.io/v3/0ae36070e132411d93ee3041178c40ae";
     const address = '0x359CB556a84aA5A12181cf0338ac93b418f6dF5C';
-    //setAddress(myaddress);
-
-    const providerUrl = process.env.PROVIDER_URL || "https://sepolia.infura.io/v3/0ae36070e132411d93ee3041178c40ae";
-
+    
 
     //MetaMAsk connection
 async function ConnectWallet(){
 
+  //let web3 = new Web3(window.ethereum);
+  
   if(window.ethereum){
-    window.ethereum.request({method:'eth_requestAccounts'}).then(res=>{
+    window.ethereum.request({method:'eth_requestAccounts'}).then(add=>{
       // Return the address of the wallet
-      console.log(res) 
+      setAddress(add);
+      //console.log(res);
+      
+      
 }) 
   }else{
     alert("install metamask extension !")
   }
+
+
 }
-    
+  
+async function InitializeVars()
+{
+  //Get actual wallet balance
+  getBalance();
+
+  //get last block mined number
+  getLastBlock();
+}
 
     //Get balance of the account
 async function getBalance(){
+
+  
   window.ethereum.request({
     method:'eth_getBalance', 
     params: [address, 'latest']
@@ -46,13 +57,57 @@ async function getBalance(){
     var bal = parseInt(balance,16);
     bal = bal/10**18;
     setBalance(bal);
-    console.log(bal)})
+    //console.log(bal)
+  })
 }
+
+async function getLastBlock(){
+
+  
+  let w3 = new Web3(window.ethereum);
+  const lastB = await w3.eth.getBlockNumber(); 
+  
+  setBlock(lastB);
+    
+  //console.log(lastB)
+  
+}
+
+
+async function CheckChain()
+{
+  let web3 = new Web3(window.ethereum);
+
+  const chain = await web3.eth.getChainId();
+
+  
+  //console.log(chain);
+
+  //Switch to Sepolia Network if not on it
+  if (chain !==11155111)
+  {
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{chainId : web3.utils.toHex(11155111) }],
+        });
+       
     
 
+  }
+}
 
 
-getBalance();
+
+
+/*
+async function getAddress(){
+  const accounts = await web3.eth.getAccounts();
+  return accounts;
+}
+
+
+ConnectWallet();
+//getBalance();
 
 
 
@@ -84,23 +139,29 @@ getBalance();
 
     },[]);*/
 
-
+    
+    
+    ConnectWallet();
+    CheckChain();
+    InitializeVars();
+    
 
     return (
       <div className="App-header">
         <center>
         <h1>WELCOME ON CHAI-NINFO PAGE</h1>
 
+
         <br></br>
 
-        <h2>Actual balance on {address} address is : {balance} ETH.</h2> 
+        <h2>Actual balance on {add} address is : {balance} ETH.</h2> 
         
-        <h2>Last Block mined is block number :{}</h2>
+        <h2>Last Block mined is block number : {block}</h2>
 
         </center>
         
       </div>
     );
-  } 
-
+  
+  }
   export default Chaininfo;
