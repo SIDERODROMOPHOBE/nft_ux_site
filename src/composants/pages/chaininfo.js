@@ -11,6 +11,7 @@ function Chaininfo() {
     const [block, setBlock] = useState(null);
     const [balance, setBalance] = useState(null);
 
+    const [customMessage, setMsg] = useState(null);
 
 
     const address = '0x359CB556a84aA5A12181cf0338ac93b418f6dF5C';
@@ -19,6 +20,7 @@ function Chaininfo() {
     //MetaMAsk connection
 async function ConnectWallet(){
 
+  
   //let web3 = new Web3(window.ethereum);
   
   if(window.ethereum){
@@ -79,18 +81,19 @@ async function CheckChain()
   let web3 = new Web3(window.ethereum);
 
   const chain = await web3.eth.getChainId();
-
-  
+  setChain(chain);
   //console.log(chain);
-
+  
   //Switch to Sepolia Network if not on it
   if (chain !==11155111)
   {
+    setMsg("🛑ALERT❗ : YOU ARE NOT ON SEPOLIA NETWORK \n Please interact with MetaMask to change network");
+  
         await window.ethereum.request({
           method: 'wallet_switchEthereumChain',
           params: [{chainId : web3.utils.toHex(11155111) }],
         });
-       
+        setMsg("");
     
 
   }
@@ -143,6 +146,8 @@ ConnectWallet();
     
     ConnectWallet();
     CheckChain();
+    
+  
     InitializeVars();
     
 
@@ -151,9 +156,10 @@ ConnectWallet();
         <center>
         <h1>WELCOME ON CHAI-NINFO PAGE</h1>
 
+        <h1>{customMessage}</h1>
 
         <br></br>
-
+        <h2>Current Chain ID is : {chain}</h2>
         <h2>Actual balance on {add} address is : {balance} ETH.</h2> 
         
         <h2>Last Block mined is block number : {block}</h2>
