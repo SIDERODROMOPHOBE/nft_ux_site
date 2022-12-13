@@ -15,7 +15,7 @@ function AppRoutes() {
   return (
     <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/chain-info" element={<ChainInfo />} />
+        <Route path="/chai-ninfo" element={<ChainInfo />} />
     </Routes>
   );
 }
