@@ -1,6 +1,6 @@
 import Web3 from "web3";
 import React, {useEffect, useState} from 'react';
-
+import './App.css'
 
 
 
@@ -82,7 +82,7 @@ async function CheckChain()
 
   const chain = await web3.eth.getChainId();
   setChain(chain);
-  //console.log(chain);
+  console.log(chain);
   
   //Switch to Sepolia Network if not on it
   if (chain !==11155111)
@@ -143,12 +143,14 @@ ConnectWallet();
     },[]);*/
 
     
+    useEffect(()=>{
+      ConnectWallet();
+      CheckChain();
+      
     
-    ConnectWallet();
-    CheckChain();
-    
+      InitializeVars();
+    },[])
   
-    InitializeVars();
     
 
     return (
