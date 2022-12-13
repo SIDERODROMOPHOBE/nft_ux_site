@@ -1,12 +1,23 @@
+import './App.css'
+
 function App() {
     return (
-      <div className="App">
-        <h1>WELCOME ON main PAGE</h1>
+      
+      <>
+      <h1 className="App-header">WELCOME ON MAIN PAGE</h1>
+      <div className="App-header">
+        
+      
+        <br></br> 
 
-        <a href="./chai-ninfo">
-        <button>Chai-Ninfo</button>
-        </a>
-      </div>
+
+          <a href="./chai-ninfo">
+            <button className='App-logo2'>Chai-Ninfo</button>
+          </a>
+          <a href='./FakeBayc'>
+            <button className='App-logo'>FakeBayc</button>
+          </a>
+        </div></>
     );
   } 
   

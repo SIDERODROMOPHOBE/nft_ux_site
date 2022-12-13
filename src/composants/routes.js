@@ -2,8 +2,11 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Main from "./pages/main";
 import ChainInfo from "./pages/chaininfo";
-/*import NotFound from "./pages/NotFound";
 import FakeBayc from "./pages/FakeBayc";
+
+
+/*import NotFound from "./pages/NotFound";
+
 import FakeBaycTokenInfo from "./pages/FakeBaycTokenInfo";
 import FakeNefturians from "./pages/FakeNefturians";
 import FakeNefturiansUserInfo from "./pages/FakeNefturiansUserInfo";
@@ -16,6 +19,7 @@ function AppRoutes() {
     <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/chai-ninfo" element={<ChainInfo />} />
+        <Route path="/FakeBayc" element={<FakeBayc/>}/>
     </Routes>
   );
 }
