@@ -8,6 +8,7 @@ function FakeBayc()
 
     const [address, setAddress] = useState(null);
     const [customMessage, setMsg] = useState(null);
+    const [Number, setNmb] = useState(null);
 
 //Connect to metamask et tout le tralala
     
@@ -52,11 +53,24 @@ async function ConnectWallet(){
   },[])
 
 
+//Contract handling part
+
+
+async function GetFBinfo()
+{
+  let web3 = new Web3(window.ethereum);
+  const FBC = new web3.eth.Contract(fakeBAYC.abi,'0x1dA89342716B14602664626CD3482b47D5C2005E');
+  const su = await FBC.methods.tokenCounter().call();
+  setNmb(su);
+}
+
+const su = GetFBinfo().toString();
+
 return(
         <div>
             <center><h1>Bienvenue sur la page Fake Bayc</h1></center>
             <h1 className="error">{customMessage}</h1>
-            <p className="App-header"></p>
+            <p className="App-header">Currently, there is {Number} FakeBayc Token in circulation !</p>
         </div>
         
     );
