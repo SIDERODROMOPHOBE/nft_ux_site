@@ -9,10 +9,13 @@ function FakeBayc()
     const [address, setAddress] = useState(null);
     const [customMessage, setMsg] = useState(null);
 
+    const [customMessage2, setMsg2] = useState(null);
+
     const [TokenQtt, setqtt] = useState(null);
     const [TokenName, setname] = useState(null);
     const [symbol, setsym] = useState(null);
 
+    const [TokenID, setid] = useState(null);
 
 //Connect to metamask et tout le tralala
     
@@ -70,7 +73,18 @@ async function GetFBinfo()
 }
 
 
+async function ClaimToken()
+{
 
+  CheckChain();
+  let web3 = new Web3(window.ethereum);
+  const FBC = new web3.eth.Contract(fakeBAYC.abi,'0x1dA89342716B14602664626CD3482b47D5C2005E');
+
+  await FBC.methods.claimAToken().send({from:String(address)});
+  
+  setMsg2("Congratulations ! You received a Bored Ape NFT ! Try Token ID page to see it !")
+
+}
 
 useEffect(()=>{
 
@@ -78,6 +92,7 @@ useEffect(()=>{
   ConnectWallet();
   CheckChain(); 
   GetFBinfo();
+  setid('2');
 },[])
 return(
 
@@ -92,6 +107,9 @@ return(
           <a href='./FakeBayc'>
             <button className='App-logo'>FakeBayc</button>
           </a>
+          <a href="./FakeBayc/">
+            <button className='App-logo2'>Token ID</button>
+          </a>
       </div>
         <div>
             <center><h1>Bienvenue sur la page Fake Bayc</h1></center>
@@ -104,9 +122,16 @@ return(
 
 
         <div>
-          <a className="Sus" href="">
+          <a className="Sus"  onClick={ClaimToken}>
             CLICK TO CLAIM YOUR OWN BORED APE AND JOIN THE YACHT CLUB &#40;Safe&#41;
           </a>
+          <p>{customMessage2}</p>
+        </div>
+
+
+        <div>
+
+          
         </div>
         
         </>
