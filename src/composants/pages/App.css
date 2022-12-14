@@ -55,3 +55,25 @@
 .error {
   color: crimson;
 }
+
+.Mmenu
+{
+  outline-width: 9px;
+outline-style: groove;
+outline-color: #FF65D6;
+outline-offset: 1px;
+border-radius: 23px;
+
+background-color: rgb(221, 124, 45);
+align-items: center;
+
+}
+
+.menu_font
+{
+  align-items: center;
+  background-color: rgb(221, 124, 45);
+
+font-size: x-large;
+color: rgb(107, 8, 8);
+}

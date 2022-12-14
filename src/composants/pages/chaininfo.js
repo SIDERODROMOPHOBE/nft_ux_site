@@ -132,6 +132,7 @@ ConnectWallet();
 
     
     useEffect(()=>{
+      document.title='Chai-Ninfo';
       ConnectWallet();
       CheckChain();
       
@@ -142,6 +143,25 @@ ConnectWallet();
     
 
     return (
+      <>
+
+      <head>
+        <title>
+          Chai-Ninfo
+        </title>
+      </head>
+
+      <div className='Mmenu'>
+      <b><p className='menu_font'>NFT UX VITRINE WEBSITE COLLECTION</p></b>
+
+      <a href="./chai-ninfo">
+            <button className='App-logo2'>Chai-Ninfo</button>
+          </a>
+          <a href='./FakeBayc'>
+            <button className='App-logo'>FakeBayc</button>
+          </a>
+      </div>
+
       <div className="App-header">
         <center>
         <h1>WELCOME ON CHAI-NINFO PAGE</h1>
@@ -157,6 +177,7 @@ ConnectWallet();
         </center>
         
       </div>
+      </>
     );
   
   }

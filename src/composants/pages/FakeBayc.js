@@ -47,10 +47,7 @@ async function ConnectWallet(){
   } //Does not handle case where Sepolia Is not installed on metamask because j'ai un peu la flemme sorry not sorry
   //En vrai je pourrais le copier sur stack overflow, je fais ca apres
 
-  useEffect(()=>{
-    ConnectWallet();
-    CheckChain();
-  },[])
+
 
 
 //Contract handling part
@@ -66,13 +63,34 @@ async function GetFBinfo()
 
 const su = GetFBinfo().toString();
 
+
+
+useEffect(()=>{
+
+  document.title = 'FakeBayc';
+  ConnectWallet();
+  CheckChain();
+},[])
 return(
+
+      <>
+      
+      <div className='Mmenu'>
+      <b><p className='menu_font'>NFT UX VITRINE WEBSITE COLLECTION</p></b>
+
+      <a href="./chai-ninfo">
+            <button className='App-logo2'>Chai-Ninfo</button>
+          </a>
+          <a href='./FakeBayc'>
+            <button className='App-logo'>FakeBayc</button>
+          </a>
+      </div>
         <div>
             <center><h1>Bienvenue sur la page Fake Bayc</h1></center>
             <h1 className="error">{customMessage}</h1>
             <p className="App-header">Currently, there is {Number} FakeBayc Token in circulation !</p>
         </div>
-        
+        </>
     );
 }
 export default FakeBayc;
