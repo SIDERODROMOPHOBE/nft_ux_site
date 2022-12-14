@@ -8,7 +8,11 @@ function FakeBayc()
 
     const [address, setAddress] = useState(null);
     const [customMessage, setMsg] = useState(null);
-    const [Number, setNmb] = useState(null);
+
+    const [TokenQtt, setqtt] = useState(null);
+    const [TokenName, setname] = useState(null);
+    const [symbol, setsym] = useState(null);
+
 
 //Connect to metamask et tout le tralala
     
@@ -57,11 +61,17 @@ async function GetFBinfo()
 {
   let web3 = new Web3(window.ethereum);
   const FBC = new web3.eth.Contract(fakeBAYC.abi,'0x1dA89342716B14602664626CD3482b47D5C2005E');
+  
   const su = await FBC.methods.tokenCounter().call();
-  setNmb(su);
+  setqtt(su);
+
+  const sud = await FBC.methods.symbol().call();
+  setsym(sud);
+
+  const nor = await FBC.methods.name().call();
+  setname(nor);
 }
 
-const su = GetFBinfo().toString();
 
 
 
@@ -88,7 +98,17 @@ return(
         <div>
             <center><h1>Bienvenue sur la page Fake Bayc</h1></center>
             <h1 className="error">{customMessage}</h1>
-            <p className="App-header">Currently, there is {Number} FakeBayc Token in circulation !</p>
+
+            <p className="App-header">The token name is {TokenName} and its symbol is {symbol}</p>
+            <p className="App-header">Currently, {TokenQtt} FakeBayc Token have already been created !</p>
+            
+        </div>
+
+
+        <div>
+          <a className="Sus" href="">
+            CLICK TO CLAIM YOUR OWN BORED APE AND JOIN THE YACHT CLUB &#40;Safe&#41;
+          </a>
         </div>
         </>
     );
