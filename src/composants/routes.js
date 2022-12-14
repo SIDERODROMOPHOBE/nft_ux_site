@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Main from "./pages/main";
 import ChainInfo from "./pages/chaininfo";
 import FakeBayc from "./pages/FakeBayc";
+import FakeBayc2 from "./pages/FakeBaycView";
 
 
 /*import NotFound from "./pages/NotFound";
@@ -20,7 +21,7 @@ function AppRoutes() {
         <Route path="/" element={<Main />} />
         <Route path="/chai-ninfo" element={<ChainInfo />} />
         <Route path="/FakeBayc" element={<FakeBayc/>}/>
-        <Route path="/FakeBayc/:elementID" element={<FakeBayc/>}/>
+        <Route path="/FakeBayc/:elementID" element={<FakeBayc2/>}/>
     </Routes>
   );
 }

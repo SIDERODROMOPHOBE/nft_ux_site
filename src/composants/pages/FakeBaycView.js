@@ -6,13 +6,23 @@ import { useParams } from "react-router-dom";
 
 function FakeBaycView() 
 {
-    const ID = useParams();
 
+    const [ID, setID] = useState();
+    let {elementID} = useParams();
+    useEffect(()=>{
+
+
+        
+        setID(String(elementID));
+    
+        console.log(elementID);
+
+    },[])
 
     return(
         <>
         <div>
-        <p>{ID}</p>
+        <h1>{ID} fd</h1>
         </div>
         
         
