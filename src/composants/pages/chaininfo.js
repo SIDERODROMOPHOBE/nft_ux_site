@@ -6,18 +6,13 @@ import './App.css'
 
 function Chaininfo() {
 
-    const [add, setAddress] = useState(null);
+    const [address, setAddress] = useState(null);
     const [chain, setChain] = useState(null); 
     const [block, setBlock] = useState(null);
     const [balance, setBalance] = useState(null);
-
     const [customMessage, setMsg] = useState(null);
 
-
-    const address = '0x359CB556a84aA5A12181cf0338ac93b418f6dF5C';
-    
-
-    //MetaMAsk connection
+//MetaMAsk connection
 async function ConnectWallet(){
 
   if(window.ethereum){
@@ -31,6 +26,7 @@ async function ConnectWallet(){
   }
 }
   
+//Get the vars to display
 async function InitializeVars()
 {
   //Get actual wallet balance
@@ -56,6 +52,7 @@ async function getBalance(){
   })
 }
 
+//get last mined block on chain
 async function getLastBlock(){
 
   
@@ -68,7 +65,7 @@ async function getLastBlock(){
   
 }
 
-
+//Whecks that metamask is well connected andon right chain, elses changes on Sepolia chain
 async function CheckChain()
 {
   let web3 = new Web3(window.ethereum);
@@ -91,8 +88,6 @@ async function CheckChain()
 
   }
 } //Does not handle case where Sepolia Is not installed on metamask because j'ai un peu la flemme sorry not sorry
-
-
 
 
 /*
@@ -155,7 +150,7 @@ ConnectWallet();
 
         <br></br>
         <h2>Current Chain ID is : {chain}</h2>
-        <h2>Actual balance on {add} address is : {balance} ETH.</h2> 
+        <h2>Actual balance on {address} address is : {balance} ETH.</h2> 
         
         <h2>Last Block mined is block number : {block}</h2>
 
