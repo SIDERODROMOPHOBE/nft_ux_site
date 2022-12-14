@@ -1,6 +1,7 @@
 import Web3 from "web3";
 import React, {useEffect, useState} from 'react';
 import './App.css'
+import fakeBAYC from './ABIs/FakeBAYC.json';
 
 function FakeBayc() 
 {
@@ -44,10 +45,6 @@ async function ConnectWallet(){
     }
   } //Does not handle case where Sepolia Is not installed on metamask because j'ai un peu la flemme sorry not sorry
   //En vrai je pourrais le copier sur stack overflow, je fais ca apres
-  
- 
-    
-  
 
   useEffect(()=>{
     ConnectWallet();
@@ -59,7 +56,7 @@ return(
         <div>
             <center><h1>Bienvenue sur la page Fake Bayc</h1></center>
             <h1 className="error">{customMessage}</h1>
-            <p className="App-header">{address}  </p>
+            <p className="App-header"></p>
         </div>
         
     );
