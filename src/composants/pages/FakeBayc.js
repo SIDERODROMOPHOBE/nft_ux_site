@@ -51,9 +51,6 @@ async function ConnectWallet(){
   } //Does not handle case where Sepolia Is not installed on metamask because j'ai un peu la flemme sorry not sorry
   //En vrai je pourrais le copier sur stack overflow, je fais ca apres
 
-
-
-
 //Contract handling part
 
 
@@ -79,7 +76,8 @@ useEffect(()=>{
 
   document.title = 'FakeBayc';
   ConnectWallet();
-  CheckChain();
+  CheckChain(); 
+  GetFBinfo();
 },[])
 return(
 
@@ -110,7 +108,7 @@ return(
             CLICK TO CLAIM YOUR OWN BORED APE AND JOIN THE YACHT CLUB &#40;Safe&#41;
           </a>
         </div>
-        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+        
         </>
     );
 }
