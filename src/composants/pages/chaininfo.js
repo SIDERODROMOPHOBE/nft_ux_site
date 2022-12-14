@@ -20,22 +20,15 @@ function Chaininfo() {
     //MetaMAsk connection
 async function ConnectWallet(){
 
-  
-  //let web3 = new Web3(window.ethereum);
-  
   if(window.ethereum){
     window.ethereum.request({method:'eth_requestAccounts'}).then(add=>{
       // Return the address of the wallet
       setAddress(add);
       //console.log(res);
-      
-      
 }) 
   }else{
     alert("install metamask extension !")
   }
-
-
 }
   
 async function InitializeVars()
@@ -97,7 +90,7 @@ async function CheckChain()
     
 
   }
-}
+} //Does not handle case where Sepolia Is not installed on metamask because j'ai un peu la flemme sorry not sorry
 
 
 
@@ -158,7 +151,7 @@ ConnectWallet();
         <center>
         <h1>WELCOME ON CHAI-NINFO PAGE</h1>
 
-        <h1>{customMessage}</h1>
+        <h1 className="error">{customMessage}</h1>
 
         <br></br>
         <h2>Current Chain ID is : {chain}</h2>
