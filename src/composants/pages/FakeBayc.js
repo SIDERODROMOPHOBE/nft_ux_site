@@ -16,7 +16,6 @@ function FakeBayc()
     const [TokenName, setname] = useState(null);
     const [symbol, setsym] = useState(null);
 
-    const [TokenID, setid] = useState(null);
 
 //Connect to metamask et tout le tralala
     
@@ -55,8 +54,6 @@ async function ConnectWallet(){
   } //Does not handle case where Sepolia Is not installed on metamask because j'ai un peu la flemme sorry not sorry
   //En vrai je pourrais le copier sur stack overflow, je fais ca apres
 
-//Contract handling part
-
 
 async function GetFBinfo()
 {
@@ -73,7 +70,6 @@ async function GetFBinfo()
   setname(nor);
 }
 
-
 async function ClaimToken()
 {
 
@@ -87,18 +83,14 @@ async function ClaimToken()
 
 }
 
-
-
-
 useEffect(()=>{
-
 
   document.title = 'Bored Apes Infos';
   ConnectWallet();
   CheckChain(); 
   GetFBinfo();
-  setid('2');
 },[])
+
 return(
 
       <>

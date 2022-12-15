@@ -13,9 +13,9 @@ function FakeBaycView()
     const [id, setID] = useState(suu);
     const [imaj, setimg] = useState();
     const [params, setparams] = useState();
-    const [chain, setChain] = useState(); 
+    
     const [errorM, seterror] = useState('');
-    const [address, setAddress] = useState('');
+    
     const [owner, setowner] = useState();
     
     
@@ -76,11 +76,11 @@ async function ConnectWallet(){
   if(window.ethereum){
     window.ethereum.request({method:'eth_requestAccounts'}).then(add=>{
       // Return the address of the wallet
-      setAddress(add);
-      //console.log(res);
+      
+      
 }) 
   }else{
-    alert("install metamask extension !")
+    alert("Install metamask extension !")
   }
 }
 
@@ -90,8 +90,7 @@ async function CheckChain()
   let web3 = new Web3(window.ethereum);
 
   const chain = await web3.eth.getChainId();
-  setChain(chain);
-  console.log(chain);
+  
   
   //Switch to Sepolia Network if not on it
   if (chain !==11155111)
