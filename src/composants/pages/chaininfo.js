@@ -6,11 +6,11 @@ import './App.css'
 
 function Chaininfo() {
 
-    const [address, setAddress] = useState(null);
-    const [chain, setChain] = useState(null); 
-    const [block, setBlock] = useState(null);
-    const [balance, setBalance] = useState(null);
-    const [customMessage, setMsg] = useState(null);
+    const [address, setAddress] = useState('');
+    const [chain, setChain] = useState(); 
+    const [block, setBlock] = useState();
+    const [balance, setBalance] = useState();
+    const [customMessage, setMsg] = useState('');
 
 //MetaMAsk connection
 async function ConnectWallet(){
@@ -25,6 +25,31 @@ async function ConnectWallet(){
     alert("install metamask extension !")
   }
 }
+
+//Whecks that metamask is well connected andon right chain, elses changes on Sepolia chain
+async function CheckChain()
+{
+  let web3 = new Web3(window.ethereum);
+
+  const chain = await web3.eth.getChainId();
+  setChain(chain);
+  console.log(chain);
+  
+  //Switch to Sepolia Network if not on it
+  if (chain !==11155111)
+  {
+    setMsg("🛑ALERT❗ : YOU ARE NOT ON SEPOLIA NETWORK \n Please interact with MetaMask to change network");
+  
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{chainId : web3.utils.toHex(11155111) }],
+        });
+        setMsg("");
+    
+
+  }
+} //Does not handle case where Sepolia Is not installed on metamask because j'ai un peu la flemme sorry not sorry
+
   
 //Get the vars to display
 async function InitializeVars()
@@ -62,30 +87,6 @@ async function getLastBlock(){
   //console.log(lastB)
   
 }
-
-//Whecks that metamask is well connected andon right chain, elses changes on Sepolia chain
-async function CheckChain()
-{
-  let web3 = new Web3(window.ethereum);
-
-  const chain = await web3.eth.getChainId();
-  setChain(chain);
-  console.log(chain);
-  
-  //Switch to Sepolia Network if not on it
-  if (chain !==11155111)
-  {
-    setMsg("🛑ALERT❗ : YOU ARE NOT ON SEPOLIA NETWORK \n Please interact with MetaMask to change network");
-  
-        await window.ethereum.request({
-          method: 'wallet_switchEthereumChain',
-          params: [{chainId : web3.utils.toHex(11155111) }],
-        });
-        setMsg("");
-    
-
-  }
-} //Does not handle case where Sepolia Is not installed on metamask because j'ai un peu la flemme sorry not sorry
 
 
 /*

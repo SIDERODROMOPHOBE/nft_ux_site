@@ -5,7 +5,7 @@ import ChainInfo from "./pages/chaininfo";
 import FakeBayc from "./pages/FakeBayc";
 import FakeBayc2 from "./pages/FakeBaycView";
 import FakeNefturians from "./pages/FakeNefturians";
-import FakeNefturiansView from "./pages/FakeNefturiansView";
+import FakeNefturians2 from "./pages/FakeNefturiansView";
 
 /*import NotFound from "./pages/NotFound";
 
@@ -22,7 +22,7 @@ function AppRoutes() {
         <Route path="/FakeBayc" element={<FakeBayc/>}/>
         <Route path="/FakeBayc/:suu" element={<FakeBayc2/>}/>
         <Route path="/FakeNefturians" element={<FakeNefturians/>}/>
-        <Route path="/FakeNefturians/:suu" element={<FakeNefturiansView/>}/>
+        <Route path="/FakeNefturians/:inf" element={<FakeNefturians2/>}/>
     </Routes>
   );
 }

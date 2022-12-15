@@ -10,7 +10,7 @@ const [address, setAddress] = useState();
 const [price,setprice]= useState();
 
 const [idv,setidv]=useState();
-
+const [chain, setChain] = useState(); 
 const [msg,setmsg]=useState("");
 const [msg2,setmsg2]=useState("");
 
@@ -54,10 +54,36 @@ async function BuyTok()
 
 }
 
+//Whecks that metamask is well connected andon right chain, elses changes on Sepolia chain
+async function CheckChain()
+{
+  let web3 = new Web3(window.ethereum);
+
+  const chain = await web3.eth.getChainId();
+  setChain(chain);
+  console.log(chain);
+  
+  //Switch to Sepolia Network if not on it
+  if (chain !==11155111)
+  {
+    setmsg("🛑ALERT❗ : YOU ARE NOT ON SEPOLIA NETWORK \n Please interact with MetaMask to change network");
+  
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{chainId : web3.utils.toHex(11155111) }],
+        });
+        setmsg("");
+    
+
+  }
+} //Does not handle case where Sepolia Is not installed on metamask because j'ai un peu la flemme sorry not sorry
+
 
 
 useEffect(()=>{
+    setmsg("");
     ConnectWallet();
+    CheckChain();
     GetPrice();
 },[])
 
@@ -78,6 +104,9 @@ return(
           </a>
           <a href='FakeNefturians'>
             <button className='App-logo'>Fake Nefturians</button>
+          </a>
+          <a href="./FakeNefturians/0">
+            <button className='App-logo2'>Nefturians infos</button>
           </a>
       </div>
 

@@ -24,6 +24,9 @@ function App() {
           <a href='FakeNefturians'>
             <button className='App-logo'>Fake Nefturians</button>
           </a>
+          <a href="./FakeNefturians/0">
+            <button className='App-logo2'>Nefturians infos</button>
+          </a>
       </div>
 
 

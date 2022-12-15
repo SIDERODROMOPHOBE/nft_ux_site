@@ -11,11 +11,11 @@ function FakeBaycView()
 {
     const { suu } = useParams();
     const [id, setID] = useState(suu);
-    const [imaj, setimg] = useState(null);
+    const [imaj, setimg] = useState();
     const [params, setparams] = useState();
-
+    const [chain, setChain] = useState(); 
     const [errorM, seterror] = useState('');
-    
+    const [address, setAddress] = useState('');
     const [owner, setowner] = useState();
     
     
@@ -70,13 +70,56 @@ function FakeBaycView()
 
     }
         
+    //MetaMAsk connection
+async function ConnectWallet(){
+
+  if(window.ethereum){
+    window.ethereum.request({method:'eth_requestAccounts'}).then(add=>{
+      // Return the address of the wallet
+      setAddress(add);
+      //console.log(res);
+}) 
+  }else{
+    alert("install metamask extension !")
+  }
+}
+
+//Whecks that metamask is well connected andon right chain, elses changes on Sepolia chain
+async function CheckChain()
+{
+  let web3 = new Web3(window.ethereum);
+
+  const chain = await web3.eth.getChainId();
+  setChain(chain);
+  console.log(chain);
+  
+  //Switch to Sepolia Network if not on it
+  if (chain !==11155111)
+  {
+    seterror("🛑ALERT❗ : YOU ARE NOT ON SEPOLIA NETWORK \n Please interact with MetaMask to change network");
+  
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{chainId : web3.utils.toHex(11155111) }],
+        });
+        seterror("");
+    
+
+  }
+} //Does not handle case where Sepolia Is not installed on metamask because j'ai un peu la flemme sorry not sorry
+
+
 
     useEffect(()=>{   
 
       
     document.title='Bored Apes Details';
-    
+
     seterror('');
+
+    ConnectWallet();
+    CheckChain();
+    
     GetInfo();
     
     
@@ -101,6 +144,9 @@ function FakeBaycView()
           </a>
           <a href='FakeNefturians'>
             <button className='App-logo'>Fake Nefturians</button>
+          </a>
+          <a href="./FakeNefturians/0">
+            <button className='App-logo2'>Nefturians infos</button>
           </a>
       </div>
 

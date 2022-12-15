@@ -112,13 +112,17 @@ return(
           <a href='FakeBayc'>
             <button className='App-logo'>Bored Apes</button>
           </a>
-          <a href="./0">
+          <a href="./FakeBayc/0">
             <button className='App-logo2'>Bored Apes infos</button>
           </a>
           <a href='FakeNefturians'>
             <button className='App-logo'>Fake Nefturians</button>
           </a>
+          <a href="./FakeNefturians/0">
+            <button className='App-logo2'>Nefturians infos</button>
+          </a>
       </div>
+      
         <div>
             <center><h1 className="writing">Bienvenue sur la page Fake Bayc</h1></center>
             <h1 className="error">{customMessage}</h1>
