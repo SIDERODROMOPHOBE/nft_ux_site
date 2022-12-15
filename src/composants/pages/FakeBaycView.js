@@ -9,7 +9,7 @@ import { IpfsImage } from 'react-ipfs-image';
 
 function FakeBaycView() 
 {
-  const { suu } = useParams();
+    const { suu } = useParams();
     const [id, setID] = useState(suu);
     const [imaj, setimg] = useState(null);
     const [params, setparams] = useState();
@@ -47,8 +47,15 @@ function FakeBaycView()
         let par=""
         for(let i = 0; i<7;i++)
         {
+          try
+          {
+            par += " Attribute : "+info.attributes[i].trait_type + "  Value : "+info.attributes[i].value + '  \n  '
+          }
+          catch(error)
+          {
+            console.log(error)
+          }
           
-          par += " Attribute : "+info.attributes[i].trait_type + "  Value : "+info.attributes[i].value + '  \n  '
         }
         setparams(par);
         }
@@ -56,6 +63,7 @@ function FakeBaycView()
         {
           //Add error page ici
           seterror('🛑 ALERT ❗ : Entered ID is wrong, please check again your value')
+          console.log(error)
           
         }
 

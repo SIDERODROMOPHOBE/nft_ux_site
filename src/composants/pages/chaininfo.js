@@ -36,10 +36,9 @@ async function InitializeVars()
   getLastBlock();
 }
 
-    //Get balance of the account
+//Get balance of the account
 async function getBalance(){
 
-  
   window.ethereum.request({
     method:'eth_getBalance', 
     params: [address, 'latest']
@@ -48,7 +47,6 @@ async function getBalance(){
     var bal = parseInt(balance,16);
     bal = bal/10**18;
     setBalance(bal);
-    //console.log(bal)
   })
 }
 
