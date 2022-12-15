@@ -5,12 +5,11 @@ import ChainInfo from "./pages/chaininfo";
 import FakeBayc from "./pages/FakeBayc";
 import FakeBayc2 from "./pages/FakeBaycView";
 import FakeNefturians from "./pages/FakeNefturians";
+import FakeNefturiansView from "./pages/FakeNefturiansView";
 
 /*import NotFound from "./pages/NotFound";
 
-import FakeBaycTokenInfo from "./pages/FakeBaycTokenInfo";
 
-import FakeNefturiansUserInfo from "./pages/FakeNefturiansUserInfo";
 import FakeMeebits from "./pages/FakeMeebits";
 import WrongNetwork from "./pages/WrongNetwork";*/
 
@@ -23,6 +22,7 @@ function AppRoutes() {
         <Route path="/FakeBayc" element={<FakeBayc/>}/>
         <Route path="/FakeBayc/:suu" element={<FakeBayc2/>}/>
         <Route path="/FakeNefturians" element={<FakeNefturians/>}/>
+        <Route path="/FakeNefturians/:suu" element={<FakeNefturiansView/>}/>
     </Routes>
   );
 }
