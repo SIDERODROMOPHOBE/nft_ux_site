@@ -119,7 +119,8 @@ function FakeNefturiansView()
                 <>
                 <div>
                 <img src={element[0]}></img>
-                {element[1].map( result =>{    return(<><p className="writing">{result.trait_type} is {result.value} </p></>);})} 
+                
+                <p className="writing">{element[1].map(result=>{return(<>{result.trait_type} : {result.value}  &nbsp;&nbsp; </>);})}</p>
                 
                 </div>
                 </>
