@@ -119,7 +119,7 @@ function FakeBaycView()
       }
       <div className="writing">
 
-      <p>{params}</p>
+      <p className="writing" >{params}</p>
       </div>
       
       <p className="error">{errorM}</p>
