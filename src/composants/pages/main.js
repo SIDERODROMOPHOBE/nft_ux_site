@@ -18,8 +18,10 @@ function App() {
           <a href='./FakeBayc'>
             <button className='App-logo'>FakeBayc</button>
           </a>
+          <a href="/FakeBayc/0">
+            <button className='App-logo2'>Token ID</button>
+          </a>
       </div>
-
 
 
       <h1 className="App-header">WELCOME ON MAIN PAGE</h1>
