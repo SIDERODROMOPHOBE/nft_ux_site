@@ -5,6 +5,7 @@ import fakeBAYC from './ABIs/FakeBAYC.json';
 
 function FakeBayc() 
 {
+  
 
     const [address, setAddress] = useState(null);
     const [customMessage, setMsg] = useState(null);
@@ -86,7 +87,16 @@ async function ClaimToken()
 
 }
 
+
+async function ExportTok(TokID)
+{
+  setid(TokID);
+  console.log(TokID);
+}
+
+
 useEffect(()=>{
+
 
   document.title = 'FakeBayc';
   ConnectWallet();
@@ -126,13 +136,11 @@ return(
             CLICK TO CLAIM YOUR OWN BORED APE AND JOIN THE YACHT CLUB &#40;Safe&#41;
           </a>
           <p>{customMessage2}</p>
-        </div>
-
-
-        <div>
 
           
         </div>
+
+
         
         </>
     );

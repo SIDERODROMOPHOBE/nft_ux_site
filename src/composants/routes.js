@@ -21,7 +21,7 @@ function AppRoutes() {
         <Route path="/" element={<Main />} />
         <Route path="/chai-ninfo" element={<ChainInfo />} />
         <Route path="/FakeBayc" element={<FakeBayc/>}/>
-        <Route path="/FakeBayc/:elementID" element={<FakeBayc2/>}/>
+        <Route path="/FakeBayc/:suu" element={<FakeBayc2/>}/>
     </Routes>
   );
 }
