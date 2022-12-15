@@ -124,3 +124,14 @@ color: rgb(107, 8, 8);
 	background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
 	background-color:#ffab23;
 }
+
+.writing
+{
+  color:aliceblue;
+  font-size: 6;
+}
+.error
+{
+  font-size: x-large;
+  color: #ff0000;
+}

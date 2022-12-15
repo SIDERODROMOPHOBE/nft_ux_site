@@ -123,7 +123,7 @@ return(
       </div>
 
         <div>
-            <center><h1>Bienvenue sur la page Fake Bayc</h1></center>
+            <center><h1 className="writing">Bienvenue sur la page Fake Bayc</h1></center>
             <h1 className="error">{customMessage}</h1>
 
             <p className="App-header">The token name is {TokenName} and its symbol is {symbol}</p>

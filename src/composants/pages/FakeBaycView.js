@@ -12,26 +12,55 @@ function FakeBaycView()
   const { suu } = useParams();
     const [id, setID] = useState(suu);
     const [imaj, setimg] = useState(null);
+    const [params, setparams] = useState();
 
-    async function Getparam()
-    {
-      console.log("launch getparam")
-      const { suu } = useParams();
-      setID(suu)
-      console.log(id)
-    }
+    const [errorM, seterror] = useState('');
     
+    const [owner, setowner] = useState();
     
     
     async function GetInfo()
     {
         //JE ME SUIS FAIT BLOQUER DE L'API SALETÉ
         const url = 'https://gateway.pinata.cloud/ipfs/QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/'+ String(id);
-        console.log(id);
-        const infos = await fetch(url);
-        const info = await  infos.json();        
+
+        const abi = fakeBAYC.abi; 
+        const contract_address = "0x1dA89342716B14602664626CD3482b47D5C2005E"; 
+        let web3 = new Web3(window.ethereum);
+        var FBC = new web3.eth.Contract(abi, contract_address);
+
+
+        try 
+        {
+        
+        
+        const owner = await FBC.methods.ownerOf(id).call();
+        setowner("Current owner of this Ape is : " + String(owner));
+
+        const URIret = await FBC.methods.tokenURI(id).call();
+        
+        const infos = await fetch(URIret);
+        
+        const info = await  infos.json();   
+          
         setimg(info.image);
-        console.log(info.image);
+
+
+        let par=""
+        for(let i = 0; i<7;i++)
+        {
+          
+          par += " Attribute : "+info.attributes[i].trait_type + "  Value : "+info.attributes[i].value + '  \n  '
+        }
+        setparams(par);
+        }
+        catch(error)
+        {
+          //Add error page ici
+          seterror('🛑 ALERT ❗ : Entered ID is wrong, please check again your value')
+          //console.log(error)
+        }
+
 
     }
         
@@ -45,16 +74,11 @@ function FakeBaycView()
     useEffect(()=>{   
 
     //Getparam()
-
+    seterror('');
     GetInfo();
     
-    console.log(imaj)
-    console.log(id)
     
     
-    
-    
-
     },[])
 
 
@@ -75,8 +99,9 @@ function FakeBaycView()
           </a>
       </div>
 
-        <div>
-        <p>You are actually Watching Bored Ape number {id}</p>
+        <div >
+        <p className="writing">You are actually Watching Bored Ape number {id}</p>
+        <p className="writing">{owner}</p>
 
         
         </div>
@@ -87,8 +112,13 @@ function FakeBaycView()
       
       </>
       }
-       
-        </>
-    );
+      <div className="writing">
+
+      <p>{params}</p>
+      </div>
+      
+      <p className="error">{errorM}</p>
+       </>
+    )
 }
 export default FakeBaycView; //
