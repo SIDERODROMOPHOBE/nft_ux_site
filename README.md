@@ -1,3 +1,14 @@
+# My NFT Vitrine UX Dynamic Website Application !
+
+This project is my answer to this [workshop](https://github.com/l-henri/erc721-ux) 
+
+This was my first time (but not last lol) working with ReactJS and Web3JS as well
+
+Don't Mind my CSS Choices, I have Awful taste in colors (😋)
+
+
+# Basic React stuff :
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
