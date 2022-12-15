@@ -2,7 +2,7 @@ import Web3 from "web3";
 import React, {useEffect, useState} from 'react';
 import './App.css'
 import fakeNft from './ABIs/FakeNefturians.json';
-import { useParams } from "react-router-dom";
+import { json, useParams } from "react-router-dom";
 import { IpfsImage } from 'react-ipfs-image';
 
 
@@ -12,7 +12,11 @@ function FakeNefturiansView()
     const [address, setID] = useState(inf);
     const [user, setuser] = useState();
     const [error, seterror] = useState('');
-    const [allTok, setToks] = useState();
+
+    const [allTok, setToks] = useState([]); //matching images
+
+    //const [allToks, setfinal] = useState()
+
     //MetaMAsk connection
     async function ConnectWallet(){
 
@@ -69,15 +73,28 @@ function FakeNefturiansView()
                 const tested = await Nft.methods.ownerOf(i).call();
             
                 if(String(tested)===String(address))
-                {
-                    allNFT.push(i); //stores all id possessed by addres in this array
+                {   
+                    const travailled =await fetch( "https://api.nefturians.io/metadata/" + String(i));
+                    const LesInfos = await travailled.json();
+
+                    //console.log(LesInfos);
+
+                    const imgETinfo = [];  //index 0 : Image - Index 1 : MEtadata
+
+                    imgETinfo.push(LesInfos.image) //push image puis
+                    imgETinfo.push(LesInfos.attributes)//push le tableau d'attributs
+
+                    allNFT.push(imgETinfo); //puis on push la pseudo tuple dans le tableau final de tous les nft possédés
+
+                    
+                    
                 }
             }
         }catch(e)
         {
             seterror('🛑 ALERT ❗ : Address in parameter is incorrect, please check again.');
         }
-        console.log(allNFT);
+        //console.log(allNFT);
         setToks(allNFT);
     }
 
@@ -89,7 +106,31 @@ function FakeNefturiansView()
         CheckChain();
         retrieveTok();
 
+        
+        
+
     },[])
+
+    
+    const allToks = allTok.map(element=>
+        {
+            console.log(element[1])
+            return(
+                <>
+                <div>
+                <img src={element[0]}></img>
+                {element[1].map( result =>{    return(<><p className="writing">{result.trait_type} is {result.value} </p></>);})} 
+                
+                </div>
+                </>
+            );
+        }) //OMFG J'EN REVIENS PAS J'AI REUSSI A ECRIRE CE SCRIPT JUSTE AUDESSUS IL EST INCROYABLE JE SUIS UN DIEU EN FAIT WTFFFFFFFFF
+
+
+        
+        //console.log(allTok)
+    //setfinal(allToks);
+    
 
     return(
         <>
@@ -115,10 +156,23 @@ function FakeNefturiansView()
       </div>
         <div>
             <br></br>
-            <button onClick={retrieveTok}>Yo</button>
+            
         <p className="error">{error}</p>
+        </div>
+
+        <div>
+            { allToks && 
+
+            <>            
+            <div>
+                {allToks}
+            </div>
+            </>
+        }
+
         </div>
         </>
     );
+
 }
 export default FakeNefturiansView;
