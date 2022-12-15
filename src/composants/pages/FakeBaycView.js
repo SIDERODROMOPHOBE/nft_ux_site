@@ -21,8 +21,6 @@ function FakeBaycView()
     
     async function GetInfo()
     {
-        //JE ME SUIS FAIT BLOQUER DE L'API SALETÉ
-        const url = 'https://gateway.pinata.cloud/ipfs/QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/'+ String(id);
 
         const abi = fakeBAYC.abi; 
         const contract_address = "0x1dA89342716B14602664626CD3482b47D5C2005E"; 
@@ -58,22 +56,18 @@ function FakeBaycView()
         {
           //Add error page ici
           seterror('🛑 ALERT ❗ : Entered ID is wrong, please check again your value')
-          //console.log(error)
+          
         }
 
 
     }
         
 
-        //En fait https://gateway.pinata.cloud/ipfs/QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/
-        //c'est littéralement toutes les infos qu'on veut, il manque juste le ID a la fin j'ai qu'a partir de la
-        //Plutot que demander a la blockchain, Web3 js je comprends rien c'est chaud
-
-        
-
     useEffect(()=>{   
 
-    //Getparam()
+      
+    document.title='Bored Apes Details';
+    
     seterror('');
     GetInfo();
     
@@ -88,14 +82,17 @@ function FakeBaycView()
 <div className='Mmenu'>
       <b><p className='menu_font'>NFT UX VITRINE WEBSITE COLLECTION</p></b>
 
-      <a href="./chai-ninfo">
+      <a href="chai-ninfo">
             <button className='App-logo2'>Chai-Ninfo</button>
           </a>
-          <a href='./FakeBayc'>
-            <button className='App-logo'>FakeBayc</button>
+          <a href='FakeBayc'>
+            <button className='App-logo'>Bored Apes</button>
           </a>
-          <a href="./FakeBayc/">
-            <button className='App-logo2'>Token ID</button>
+          <a href="./FakeBayc/0">
+            <button className='App-logo2'>Bored Apes infos</button>
+          </a>
+          <a href='FakeNefturians'>
+            <button className='App-logo'>Fake Nefturians</button>
           </a>
       </div>
 

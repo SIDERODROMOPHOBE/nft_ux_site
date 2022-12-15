@@ -12,6 +12,7 @@
     width: 2cm;
     animation: App-logo-spin infinite 3s ease-out;    
     animation-direction: alternate-reverse;
+    color:#000000;
   }
 }
 
@@ -23,6 +24,8 @@
     display:inline-block;
     animation: App-logo-spin infinite 2s ease-out; 
     animation-direction: alternate;   
+
+    color:aliceblue;
   }
 }
 
@@ -62,7 +65,6 @@
 .Mmenu
 {
 
-  
   outline-width: 9px;
 outline-style: groove;
 outline-color: #FF65D6;
@@ -77,9 +79,6 @@ align-items: center;
 
 .menu_font
 {
-
- 
-
   align-items: center;
   background:linear-gradient(to bottom,  #d20ea1 5%,rgb(221,124,45) 95%);
 

@@ -1,15 +1,13 @@
-import './App.css'
-import React, {useEffect} from 'react';
+import Web3 from "web3";
+import React, {useEffect, useState} from 'react';
+import './App.css';
+import fakeBAYC from './ABIs/FakeNefturians.json';
 
-function App() {
-  useEffect(() => {
-    document.title = 'Main Page';
-  }, []);
-    return (      
-
-      <> 
-      
-      <div className='Mmenu'>
+function FakeNefturians()
+{
+    return(
+        <>
+        <div className='Mmenu'>
       <b><p className='menu_font'>NFT UX VITRINE WEBSITE COLLECTION</p></b>
 
       <a href="chai-ninfo">
@@ -25,16 +23,7 @@ function App() {
             <button className='App-logo'>Fake Nefturians</button>
           </a>
       </div>
-
-
-      <h1 className="App-header">WELCOME ON MAIN PAGE</h1>
-      <div className="App-header">
-        
-      
-        <br></br> 
-  
-        </div></>
+        </>
     );
-  } 
-  
-  export default App;
+}
+export default FakeNefturians;
