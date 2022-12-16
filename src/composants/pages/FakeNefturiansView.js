@@ -10,10 +10,9 @@ function FakeNefturiansView()
 {
     const { inf } = useParams();
     const [address, setID] = useState(inf);
-    const [user, setuser] = useState();
     const [error, seterror] = useState('');
 
-    const [allTok, setToks] = useState([]); //matching images
+    const [allTok, setToks] = useState([]); //matching NFTs
 
     //const [allToks, setfinal] = useState()
 
@@ -64,6 +63,7 @@ function FakeNefturiansView()
 
         const supply = await Nft.methods.totalSupply().call();
         const allNFT = [];
+        console.log("supply : ",supply)
         try
         {
 
@@ -71,15 +71,16 @@ function FakeNefturiansView()
             for (let i = 0; i< supply; i++)  //checks all NFT id's owner and if it is the same as the parametered address
             {        
                 const tested = await Nft.methods.ownerOf(i).call();
-            
-                if(String(tested)===String(address))
+                
+                //console.log(i,' ',parseInt(tested,16),' ',parseInt(address,16))
+                if(parseInt(tested,16)===parseInt(address,16))  //ParseInt used to compare adresses without having issues because of lower ou upper cases
                 {   
                     const travailled =await fetch( "https://api.nefturians.io/metadata/" + String(i));
                     const LesInfos = await travailled.json();
 
                     //console.log(LesInfos);
 
-                    const imgETinfo = [];  //index 0 : Image - Index 1 : MEtadata
+                    const imgETinfo = [];  //index 0 : Image    -    Index 1 : MEtadata
 
                     imgETinfo.push(LesInfos.image) //push image puis
                     imgETinfo.push(LesInfos.attributes)//push le tableau d'attributs
@@ -102,8 +103,8 @@ function FakeNefturiansView()
     useEffect(()=>{
         document.title='Nefturians Details';
 
-        ConnectWallet();
-        CheckChain();
+        //ConnectWallet();
+        //CheckChain();
         retrieveTok();
 
         
@@ -114,12 +115,12 @@ function FakeNefturiansView()
     
     const allToks = allTok.map(element=>
         {
-            console.log(element[1])
+            
             return(
                 <>
                 <div>
-                <img src={element[0]}></img>
-                
+                <img width="50%" height="50%" src={element[0]}></img>
+
                 <p className="writing">{element[1].map(result=>{return(<>{result.trait_type} : {result.value}  &nbsp;&nbsp; </>);})}</p>
                 
                 </div>
@@ -159,6 +160,10 @@ function FakeNefturiansView()
             <br></br>
             
         <p className="error">{error}</p>
+        </div>
+
+        <div>
+            <b><p className="App-header">This is {address}'s Nefturians Collection !</p></b>
         </div>
 
         <div>
