@@ -140,19 +140,19 @@ function FakeNefturiansView()
         <div className='Mmenu'>
       <b><p className='menu_font'>NFT UX VITRINE WEBSITE COLLECTION</p></b>
 
-      <a href="chai-ninfo">
+      <a href="/chai-ninfo">
             <button className='App-logo2'>Chai-Ninfo</button>
           </a>
-          <a href='FakeBayc'>
+          <a href='/FakeBayc'>
             <button className='App-logo'>Bored Apes</button>
           </a>
           <a href="./FakeBayc/0">
             <button className='App-logo2'>Bored Apes infos</button>
           </a>
-          <a href='FakeNefturians'>
+          <a href='/FakeNefturians'>
             <button className='App-logo'>Fake Nefturians</button>
           </a>
-          <a href="./FakeNefturians/0">
+          <a href="./0">
             <button className='App-logo2'>Nefturians infos</button>
           </a>
       </div>
